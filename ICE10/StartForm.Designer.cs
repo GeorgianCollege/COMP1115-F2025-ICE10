@@ -1,6 +1,6 @@
 ﻿namespace ICE10
 {
-    partial class StarForm
+    partial class StartForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             Button_New.BackColor = Color.ForestGreen;
             Button_New.ForeColor = SystemColors.Control;
             Button_New.Location = new Point(122, 145);
-            Button_New.Margin = new Padding(4, 4, 4, 4);
+            Button_New.Margin = new Padding(4);
             Button_New.Name = "Button_New";
             Button_New.Size = new Size(268, 74);
             Button_New.TabIndex = 0;
@@ -70,7 +70,7 @@
             Button_Exit.UseVisualStyleBackColor = true;
             Button_Exit.Click += Button_Exit_Click;
             // 
-            // StarForm
+            // StartForm
             // 
             AutoScaleDimensions = new SizeF(16F, 39F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -79,9 +79,12 @@
             Controls.Add(Button_Load);
             Controls.Add(Button_New);
             Font = new Font("Calibri", 12F);
-            Margin = new Padding(4, 4, 4, 4);
-            Name = "StarForm";
-            Text = "StarForm";
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            Name = "StartForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "StartForm";
             FormClosing += StarForm_FormClosing;
             ResumeLayout(false);
         }

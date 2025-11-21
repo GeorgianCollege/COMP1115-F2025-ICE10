@@ -4,6 +4,7 @@ namespace ICE10
     {
         Splash,
         Start,
+        Selection,
         Next,
         Final,
         About
@@ -14,6 +15,7 @@ namespace ICE10
     {
         // Declaring Form Variables
         public static SplashForm SplashForm;
+        public static StartForm StartForm;
         public static SelectionForm SelectionForm;
         public static NextForm NextForm;
         public static FinalForm FinalForm;
@@ -34,6 +36,7 @@ namespace ICE10
             // Initializing the Form Variables
             // by instantiating objects of the related form types
             SplashForm = new SplashForm();
+            StartForm = new StartForm();
             SelectionForm = new SelectionForm();
             NextForm = new NextForm();
             FinalForm = new FinalForm();
@@ -43,6 +46,7 @@ namespace ICE10
             Forms =
             [
                 SplashForm,
+                StartForm,
                 SelectionForm,
                 NextForm,
                 FinalForm,
