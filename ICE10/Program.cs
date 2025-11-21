@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace ICE10
 {
     public enum FormType
@@ -101,5 +103,84 @@ namespace ICE10
             toast.Show(Form.ActiveForm);
         }
 
+        public static void SaveCharacter(string path)
+        {
+            using StreamWriter writer = new StreamWriter(path);
+            writer.WriteLine(Settings.Default.AGL);
+            writer.WriteLine(Settings.Default.STR);
+            writer.WriteLine(Settings.Default.VGR);
+            writer.WriteLine(Settings.Default.PER);
+            writer.WriteLine(Settings.Default.INT);
+            writer.WriteLine(Settings.Default.WIL);
+            writer.WriteLine(Settings.Default.CharacterName);
+            writer.WriteLine(Settings.Default.Species);
+            writer.WriteLine(Settings.Default.Career);
+        }
+
+        public static void LoadCharacter(string path)
+        {
+            try
+            {
+                // Check for file existence
+                if (!File.Exists(path))
+                {
+                    throw new FileNotFoundException("Character File does not exist");
+                }
+
+                // Check for empty file
+                FileInfo info = new FileInfo(path);
+                if (info.Length == 0)
+                {
+                    throw new FileFormatException("Character file is empty");
+                }
+
+                // Quick check for file validity by counting the number of lines
+                string[] lines = File.ReadAllLines(path);
+                if (lines.Length < Settings.Default.Properties.Count)
+                {
+                    throw new FileFormatException("Invalid Character file");
+                }
+
+
+                using StreamReader reader = new StreamReader(path);
+                var AGL = reader.ReadLine();
+                var STR = reader.ReadLine();
+                var VGR = reader.ReadLine();
+                var PER = reader.ReadLine();
+                var INT = reader.ReadLine();
+                var WIL = reader.ReadLine();
+                var CharacterName = reader.ReadLine();
+                var Species = reader.ReadLine();
+                var Career = reader.ReadLine();
+
+                if (AGL == null || STR == null || VGR == null || PER == null || INT == null || WIL == null ||
+                    CharacterName == null || Species == null || Career == null)
+                {
+                    throw new FileFormatException("Invalid Character file");
+                }
+                Settings.Default.AGL = AGL;
+                Settings.Default.STR = STR;
+                Settings.Default.VGR = VGR;
+                Settings.Default.PER = PER;
+                Settings.Default.INT = INT;
+                Settings.Default.WIL = WIL;
+                Settings.Default.CharacterName = CharacterName;
+                Settings.Default.Species = Species;
+                Settings.Default.Career = Career;
+
+            }
+            catch (FileNotFoundException e)
+            {
+                ShowToast("File Not Found: " + e.Message, ToastType.Danger);
+            }
+            catch (FileFormatException e)
+            {
+                ShowToast("Format Error: " + e.Message, ToastType.Danger);
+            }
+            catch (Exception e)
+            {
+                ShowToast("Error: " + e.Message, ToastType.Danger);
+            }
+        }
     }
 }
