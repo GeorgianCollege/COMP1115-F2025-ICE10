@@ -28,15 +28,13 @@ namespace ICE10
             var dialog = new OpenFileDialog();
             dialog.Title = "Load Character";
             dialog.Filter = "Character Files (*.chr)|*.chr|All Files (*.*)|*.*";
-            //dialog.InitialDirectory = Program.DownloadsFolder;
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    Program.LoadCharacter(dialog.FileName);
-            //    Program.HasLoadedCharacter = true;
-            //    Program.Forms[(int)FormType.Selection].Show();
-            //    Hide();
-            //}
-
+            dialog.InitialDirectory = Program.DownloadsFolder;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                Program.HasLoadedCharacter = Program.LoadCharacter(dialog.FileName);
+                Program.Forms[(int)FormType.Selection].Show();
+                Hide();
+            }
         }
 
         private void Button_Exit_Click(object sender, EventArgs e)

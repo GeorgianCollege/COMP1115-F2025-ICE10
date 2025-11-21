@@ -37,7 +37,7 @@
             // 
             Label_Message.AutoSize = true;
             Label_Message.Font = new Font("Calibri", 14F, FontStyle.Bold);
-            Label_Message.Location = new Point(10, 30);
+            Label_Message.Location = new Point(14, 27);
             Label_Message.Margin = new Padding(5, 0, 5, 0);
             Label_Message.Name = "Label_Message";
             Label_Message.Size = new Size(238, 46);
@@ -46,7 +46,7 @@
             // 
             // ToastTimer
             // 
-            ToastTimer.Interval = 1500;
+            ToastTimer.Interval = 3000;
             ToastTimer.Tick += ToastTimer_Tick;
             // 
             // ToastForm
@@ -63,6 +63,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
             MaximumSize = new Size(700, 100);
+            MinimumSize = new Size(700, 100);
             Name = "ToastForm";
             ShowIcon = false;
             ShowInTaskbar = false;

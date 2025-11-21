@@ -36,6 +36,9 @@ namespace ICE10
         // Declaring a bool that will help us exit
         public static bool IsExiting = false;
 
+        public static bool HasLoadedCharacter = false;
+
+        public static string DownloadsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
         [STAThread]
         static void Main()
@@ -117,7 +120,7 @@ namespace ICE10
             writer.WriteLine(Settings.Default.Career);
         }
 
-        public static void LoadCharacter(string path)
+        public static bool LoadCharacter(string path)
         {
             try
             {
@@ -167,19 +170,23 @@ namespace ICE10
                 Settings.Default.CharacterName = CharacterName;
                 Settings.Default.Species = Species;
                 Settings.Default.Career = Career;
+                return true;
 
             }
             catch (FileNotFoundException e)
             {
                 ShowToast("File Not Found: " + e.Message, ToastType.Danger);
+                return false;
             }
             catch (FileFormatException e)
             {
                 ShowToast("Format Error: " + e.Message, ToastType.Danger);
+                return false;
             }
             catch (Exception e)
             {
                 ShowToast("Error: " + e.Message, ToastType.Danger);
+                return false;
             }
         }
     }
